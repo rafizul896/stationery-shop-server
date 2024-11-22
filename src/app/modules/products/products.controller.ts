@@ -22,7 +22,22 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     const result = await productService.getAllProducts();
     res.json({
-      message: 'Product created successfully',
+      message: 'Products retrieved successfully',
+      success: true,
+      data: result,
+    });
+  } catch (err: any) {
+    res.send(createGenericErrRes(err));
+  }
+};
+
+// Get a Specific Stationery Product
+const getAProduct = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId
+    const result = await productService.getAProduct(productId);
+    res.json({
+      message: 'Product retrieved successfully',
       success: true,
       data: result,
     });
@@ -33,5 +48,6 @@ const getAllProducts = async (req: Request, res: Response) => {
 
 export const productController = {
   createAProduct,
-  getAllProducts
+  getAllProducts,
+  getAProduct,
 };
