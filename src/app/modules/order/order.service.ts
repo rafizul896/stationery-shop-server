@@ -6,6 +6,30 @@ const createOrder = async (payload: IOrder): Promise<IOrder> => {
   return result;
 };
 
+const calculateRevenue = async () => {
+  const result = Order.aggregate([
+    // stage-1
+    {
+      $group: {
+        _id: null,
+        totalRevenue: {
+          $sum: '$totalPrice',
+        },
+      },
+    },
+    // stage-2
+    {
+      $project: {
+        _id: 0,
+        totalRevenue: 1,
+      },
+    },
+  ]);
+
+  return result;
+};
+
 export const orderService = {
   createOrder,
+  calculateRevenue,
 };
