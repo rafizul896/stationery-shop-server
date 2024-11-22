@@ -63,9 +63,26 @@ const updateAProduct = async (req: Request, res: Response) => {
   }
 };
 
+// Delete a Stationery Product
+const deleteAProduct = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    await productService.deleteAProduct(productId);
+    
+    res.json({
+      message: 'Product deleted successfully',
+      success: true,
+      data: {},
+    });
+  } catch (err: any) {
+    res.send(createGenericErrRes(err));
+  }
+};
+
 export const productController = {
   createAProduct,
   getAllProducts,
   getAProduct,
   updateAProduct,
+  deleteAProduct,
 };

@@ -17,7 +17,14 @@ const getAProduct = async (productId: string) => {
 };
 
 const updateAProduct = async (productId: string, data: IProduct) => {
-  const result = await Product.findByIdAndUpdate(productId, data,{ new: true });
+  const result = await Product.findByIdAndUpdate(productId, data, {
+    new: true,
+  });
+  return result;
+};
+
+const deleteAProduct = async (productId: string) => {
+  const result = await Product.findByIdAndDelete(productId, { new: true });
   return result;
 };
 
@@ -26,4 +33,5 @@ export const productService = {
   getAllProducts,
   getAProduct,
   updateAProduct,
+  deleteAProduct,
 };
