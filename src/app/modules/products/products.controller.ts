@@ -12,11 +12,26 @@ const createAProduct = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
-  } catch (err:any) {
-    res.send(createGenericErrRes(err))
+  } catch (err: any) {
+    res.send(createGenericErrRes(err));
+  }
+};
+
+// Get All Stationery Products
+const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await productService.getAllProducts();
+    res.json({
+      message: 'Product created successfully',
+      success: true,
+      data: result,
+    });
+  } catch (err: any) {
+    res.send(createGenericErrRes(err));
   }
 };
 
 export const productController = {
-    createAProduct
-}
+  createAProduct,
+  getAllProducts
+};
