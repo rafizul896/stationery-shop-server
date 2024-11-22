@@ -1,20 +1,21 @@
 import  { model, models, Schema, Types } from 'mongoose';
 import IOrder from './order.interface';
+import Product from '../products/products.model';
 
 const orderSchema = new Schema<IOrder>(
   {
     email: {
       type: String,
       required: [true, 'Email is required'],
-      match: [/.+@.+\..+/, 'Please provide a valid email'],
+      match: [/\S+@\S+\.\S+/, 'Please provide a valid email'],
     },
     product: {
       type: Types.ObjectId,
-      ref: 'StationeryProduct',
+      ref: Product,
       required: [true, 'Product is required'],
       validate: {
         validator: async (id: Types.ObjectId) => {
-          const productExists = await models.StationeryProduct.exists({
+          const productExists = await models.Product.exists({
             _id: id,
           });
           return productExists;
@@ -39,6 +40,7 @@ const orderSchema = new Schema<IOrder>(
   },
   {
     timestamps: true,
+    versionKey: false
   },
 );
 

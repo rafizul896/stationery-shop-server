@@ -23,7 +23,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     const result = await productService.getAllProducts();
     res.json({
       message: 'Products retrieved successfully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (err: any) {
@@ -38,7 +38,7 @@ const getAProduct = async (req: Request, res: Response) => {
     const result = await productService.getAProduct(productId);
     res.json({
       message: 'Product retrieved successfully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (err: any) {
@@ -55,7 +55,7 @@ const updateAProduct = async (req: Request, res: Response) => {
     const result = await productService.updateAProduct(productId, data);
     res.json({
       message: 'Product updated successfully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (err: any) {
@@ -71,7 +71,7 @@ const deleteAProduct = async (req: Request, res: Response) => {
     
     res.json({
       message: 'Product deleted successfully',
-      success: true,
+      status: true,
       data: {},
     });
   } catch (err: any) {
