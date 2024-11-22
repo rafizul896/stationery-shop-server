@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose';
+import { IProduct } from './products.interface';
 
-const productSchema = new Schema({
+const productSchema = new Schema<IProduct>({
   name: {
     type: String,
     required: [true, 'Product name is required'],
@@ -10,7 +11,7 @@ const productSchema = new Schema({
     required: [true, 'Brand is required'],
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, 'Price is required'],
     min: [0, 'Price must be a positive number.'],
   },
@@ -43,4 +44,6 @@ const productSchema = new Schema({
   },
 });
 
-const Product = model('Product', productSchema);
+const Product = model<IProduct>('Product', productSchema);
+
+export default Product;
