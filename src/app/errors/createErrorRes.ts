@@ -1,6 +1,6 @@
 import config from '../config';
 
-interface IError {
+export interface IError {
   message: string;
   success: false;
   error: string;

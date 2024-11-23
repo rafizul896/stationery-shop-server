@@ -35,5 +35,5 @@ const calculateRevenue = async (req: Request, res: Response) => {
 
 export const orderController = {
   createOrder,
-  calculateRevenue
+  calculateRevenue,
 };
