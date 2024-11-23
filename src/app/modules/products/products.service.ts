@@ -1,4 +1,4 @@
-import { IProduct } from './products.interface';
+import { IGetProductsQuery, IProduct } from './products.interface';
 import Product from './products.model';
 
 const createAProduct = async (payload: IProduct): Promise<IProduct> => {
@@ -6,8 +6,8 @@ const createAProduct = async (payload: IProduct): Promise<IProduct> => {
   return result;
 };
 
-const getAllProducts = async () => {
-  const result = await Product.find();
+const getAllProducts = async (query: IGetProductsQuery) => {
+  const result = await Product.find(query);
   return result;
 };
 

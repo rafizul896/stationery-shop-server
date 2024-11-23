@@ -12,3 +12,7 @@ export interface IProduct {
   quantity: number;
   inStock: boolean;
 }
+
+export interface IGetProductsQuery {
+  searchTerm?: string; 
+}

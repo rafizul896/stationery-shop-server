@@ -6,7 +6,6 @@ import createGenericErrRes from '../../errors/createErrorRes';
 const createAProduct = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-
     const result = await productService.createAProduct(data);
 
     res.json({
@@ -24,7 +23,20 @@ const createAProduct = async (req: Request, res: Response) => {
 // Get All Stationery Products
 const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await productService.getAllProducts();
+    const { searchTerm } = req.query;
+    let query = {};
+
+    if (searchTerm) {
+      query = {
+        $or: [
+          { name: { $regex: searchTerm, $options: 'i' } },
+          { brand: { $regex: searchTerm, $options: 'i' } },
+          { category: { $regex: searchTerm, $options: 'i' } },
+        ],
+      };
+    }
+
+    const result = await productService.getAllProducts(query);
     res.json({
       message: 'Products retrieved successfully',
       status: true,
