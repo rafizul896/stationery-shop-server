@@ -13,8 +13,10 @@ const createOrder = async (req: Request, res: Response) => {
       status: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
@@ -28,8 +30,10 @@ const calculateRevenue = async (req: Request, res: Response) => {
       status: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 

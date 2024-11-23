@@ -12,8 +12,10 @@ const createAProduct = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
@@ -26,8 +28,10 @@ const getAllProducts = async (req: Request, res: Response) => {
       status: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
@@ -41,8 +45,10 @@ const getAProduct = async (req: Request, res: Response) => {
       status: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
@@ -58,8 +64,10 @@ const updateAProduct = async (req: Request, res: Response) => {
       status: true,
       data: result,
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
@@ -68,14 +76,16 @@ const deleteAProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
     await productService.deleteAProduct(productId);
-    
+
     res.json({
       message: 'Product deleted successfully',
       status: true,
       data: {},
     });
-  } catch (err: any) {
-    res.send(createGenericErrRes(err));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      res.send(createGenericErrRes(err));
+    }
   }
 };
 
