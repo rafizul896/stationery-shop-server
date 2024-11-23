@@ -1,8 +1,9 @@
 import Product from '../products/products.model';
 import IOrder from './order.interface';
 import Order from './order.model';
+
 const createOrder = async (payload: IOrder): Promise<IOrder> => {
-  const { email, product, quantity } = payload;
+  const { email, product, quantity, totalPrice } = payload;
 
   // Check if the product exists
   const existsProduct = await Product.findById(product);
@@ -13,15 +14,12 @@ const createOrder = async (payload: IOrder): Promise<IOrder> => {
     throw new Error('Insufficient stock for the requested quantity');
   }
 
-  // Calculate the total price
-  const totalPrice = existsProduct.price * quantity;
-
   // Update inventory
   existsProduct.quantity -= quantity;
   if (existsProduct.quantity === 0) {
     existsProduct.inStock = false;
   }
-  
+
   await existsProduct.save();
 
   // Create the order

@@ -14,5 +14,5 @@ export interface IProduct {
 }
 
 export interface IGetProductsQuery {
-  searchTerm?: string; 
+  searchTerm?: string;
 }

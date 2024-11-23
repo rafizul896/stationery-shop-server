@@ -37,11 +37,19 @@ const getAllProducts = async (req: Request, res: Response) => {
     }
 
     const result = await productService.getAllProducts(query);
-    res.json({
-      message: 'Products retrieved successfully',
-      status: true,
-      data: result,
-    });
+
+    if (result.length === 0) {
+      res.json({
+        message: 'No Products Found',
+        status: 404,
+      });
+    } else {
+      res.json({
+        message: 'Products retrieved successfully',
+        status: true,
+        data: result,
+      });
+    }
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.send(createGenericErrRes(err));
