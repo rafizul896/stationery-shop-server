@@ -1,16 +1,20 @@
 # Stationery Shop Server
 
 ## Overview
+
 The **Stationery Shop API** is a backend application built with Express and TypeScript. It integrates MongoDB with Mongoose to handle the management of stationery products and customer orders. This application provides robust features for creating, reading, updating, and deleting (CRUD) products and orders, as well as handling inventory and calculating revenue from sales.
 
 ## Features
 
 ### Core Features
+
 - **Stationery Product Management**:
+
   - Create, view, update, and delete stationery products.
   - Search products by name, brand, or category.
 
 - **Order Management**:
+
   - Place orders for stationery products.
   - Automatically adjust inventory levels based on orders.
   - Handle insufficient stock scenarios.
@@ -19,11 +23,14 @@ The **Stationery Shop API** is a backend application built with Express and Type
   - Aggregate and compute total revenue from all orders.
 
 ### Additional Features
+
 - **Error Handling**:
+
   - Structured error responses for validation errors, missing data, and not found errors.
   - Ensures the API is resilient and provides meaningful feedback for debugging.
 
 - **Data Validation**:
+
   - Mongoose schema validation to ensure data integrity for products and orders.
 
 - **TypeScript Support**:
@@ -65,10 +72,10 @@ Stationery_Shop/
 
 ```
 
-
 ## API Endpoints
 
 ### Product Endpoints
+
 1. **Create Product**: `POST /api/products`
 2. **Get All Products**: `GET /api/products`
 3. **Get Product by ID**: `GET /api/products/:productId`
@@ -76,6 +83,62 @@ Stationery_Shop/
 5. **Delete Product**: `DELETE /api/products/:productId`
 
 ### Order Endpoints
+
 1. **Place an Order**: `POST /api/orders`
 2. **Calculate Revenue**: `GET /api/orders/revenue`
 
+### Installation
+
+1. **Place an Order**:
+
+```
+git clone https://github.com/rafizul896/stationery-shop-server.git
+cd stationery-shop-server
+
+```
+
+2. **Install Dependencies:**:
+
+```
+npm install
+
+```
+
+3. **Environment Setup:**:
+
+```
+NODE_ENV=development
+PORT=5000
+DATABASE_URL=mongodb://localhost:27017/stationery_shop
+
+```
+
+4. **Build the Project: Compile TypeScript files into JavaScript =>**:
+
+```
+npm run build
+
+```
+
+5. **Start the Server:**:
+   -For Development Mode (with auto-restart):
+
+```
+npm run start:dev
+
+```
+   -For Production Mode:
+
+```
+npm run start:prod  
+
+
+```
+
+6. **Access the API**:
+Open your browser or API testing tool (e.g., Postman) and navigate to:
+
+```
+http://localhost:5000/api  
+
+```

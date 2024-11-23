@@ -62,11 +62,19 @@ const getAProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
     const result = await productService.getAProduct(productId);
-    res.json({
-      message: 'Product retrieved successfully',
-      status: true,
-      data: result,
-    });
+
+    if (result) {
+      res.json({
+        message: 'Product retrieved successfully',
+        status: true,
+        data: result,
+      });
+    } else {
+      res.json({
+        message: 'Product not found Invalid ProductId',
+        status: 404,
+      });
+    }
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.send(createGenericErrRes(err));
@@ -81,6 +89,7 @@ const updateAProduct = async (req: Request, res: Response) => {
     const data = req.body;
 
     const result = await productService.updateAProduct(productId, data);
+
     res.json({
       message: 'Product updated successfully',
       status: true,
@@ -97,13 +106,20 @@ const updateAProduct = async (req: Request, res: Response) => {
 const deleteAProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
-    await productService.deleteAProduct(productId);
+    const result = await productService.deleteAProduct(productId);
 
-    res.json({
-      message: 'Product deleted successfully',
-      status: true,
-      data: {},
-    });
+    if (result) {
+      res.json({
+        message: 'Product deleted successfully',
+        status: true,
+        data: {},
+      });
+    } else {
+      res.json({
+        message: 'Invalid ProductId',
+        status: 404,
+      });
+    }
   } catch (err: unknown) {
     if (err instanceof Error) {
       res.send(createGenericErrRes(err));
