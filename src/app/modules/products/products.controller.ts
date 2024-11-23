@@ -5,8 +5,10 @@ import createGenericErrRes from '../../errors/createErrorRes';
 // Create a Stationery Product
 const createAProduct = async (req: Request, res: Response) => {
   try {
-    const product = req.body;
-    const result = await productService.createAProduct(product);
+    const data = req.body;
+
+    const result = await productService.createAProduct(data);
+
     res.json({
       message: 'Product created successfully',
       success: true,

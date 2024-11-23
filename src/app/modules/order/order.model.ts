@@ -1,4 +1,4 @@
-import  { model, models, Schema, Types } from 'mongoose';
+import { model, models, Schema, Types } from 'mongoose';
 import IOrder from './order.interface';
 import Product from '../products/products.model';
 
@@ -40,7 +40,7 @@ const orderSchema = new Schema<IOrder>(
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   },
 );
 
