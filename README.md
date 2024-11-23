@@ -121,13 +121,13 @@ npm run build
 ```
 
 5. **Start the Server:**:
-   -For Development Mode (with auto-restart):
+For Development Mode (with auto-restart):
 
 ```
 npm run start:dev
 
 ```
-   -For Production Mode:
+For Production Mode:
 
 ```
 npm run start:prod  
